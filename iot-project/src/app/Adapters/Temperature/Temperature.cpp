@@ -6,6 +6,8 @@
  */
 
 #include "Temperature.h"
+#include <memory>
+#include "../../../lib/iot/ModelFactory.h"
 #include "../../Models/Temperature/Temperature.h"
 
 namespace app {
@@ -17,10 +19,8 @@ Temperature::Temperature() {
 }
 
 void Temperature::init(std::shared_ptr<Adapter> adapter) {
-	auto temp = std::make_shared<app::model::Temperature>();
+	auto temp = iot::ModelFactory::produce("Temperature","");
 	temp->atach(adapter);
-
-	temp->makeEvent();
 }
 
 void Temperature::update(std::string observableName) {

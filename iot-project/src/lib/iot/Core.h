@@ -14,6 +14,7 @@ class Core {
 public:
 	Core();
 	virtual void run();
+	virtual void shutdown();
 	virtual ~Core();
 };
 

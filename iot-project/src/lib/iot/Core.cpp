@@ -9,6 +9,7 @@
 #include <iostream>
 
 #include "modules/Logger/LoggerFactory.h"
+#include "ModelFactory.h"
 
 namespace iot {
 
@@ -25,6 +26,16 @@ void Core::run() {
 	LoggerFactory lf;
 	std::shared_ptr<Logger> logger = lf.createProduct();
 	logger->debug("Core of IoT is starting...");
+
+	//closing
+	this->shutdown();
+}
+
+void Core::shutdown() {
+	LoggerFactory lf;
+	std::shared_ptr<Logger> logger = lf.createProduct();
+	logger->debug("Core of IoT is shutting down...");
+	ModelFactory::destroyCreators();
 }
 
 } /* namespace iot */
