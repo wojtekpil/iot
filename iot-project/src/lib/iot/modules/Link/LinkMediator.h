@@ -17,7 +17,9 @@
 #include "../Translator/Translator.h"
 
 namespace iot {
-
+/**
+ * Manages connection between Links and Device Models
+ */
 class LinkMediator {
 protected:
 	struct SlinkDevice {
@@ -32,32 +34,9 @@ protected:
 
 public:
 	LinkMediator();
-	/**
-	 * Register Link type in LinkMediator for communication between Device Model and Link
-	 * @param link
-	 * @return
-	 */
 	bool registerLink(std::shared_ptr<Link> link);
-	/**
-	 * Register connection between Device Model, Link using given Translator (from link to model)
-	 * @param config - describe link connection
-	 * @param dev - device model
-	 * @param trans - translator from link to model data
-	 * @return
-	 */
 	bool registerDevice(Link::Sdevice config, std::shared_ptr<Device> dev, std::shared_ptr<Translator> trans);
-	/**
-	 * Removes link type from LinkMediator, doesnt work if Link is already in use
-	 * @param link
-	 * @return
-	 */
 	bool unregisterLink(std::shared_ptr<Link> link);
-	/**
-	 * Removes connection of Device Model and Link
-	 * @param config - describe link connection
-	 * @param dev - device model
-	 * @return
-	 */
 	bool unregisterDevice(Link::Sdevice config, std::shared_ptr<Device> dev);
 	void notify();
 	virtual ~LinkMediator();
