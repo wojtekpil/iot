@@ -15,6 +15,10 @@ namespace iot {
 class ModelCreator {
 public:
 	ModelCreator() {}
+	/**
+	 * Create specific Model
+	 * @return specific Model ptr
+	 */
 	virtual std::shared_ptr<Model> produce()=0;
 	virtual ~ModelCreator() {}
 };

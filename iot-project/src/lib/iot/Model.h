@@ -18,6 +18,7 @@ class Model: public Observable {
 protected:
 	/**
 	 * Shorthand for LoggerFactory
+	 * @return
 	 */
 	std::shared_ptr<Logger> log();
 public:
