@@ -16,6 +16,9 @@
 
 namespace iot {
 
+/**
+ * Consturctor of LoggerFactory, put your loggers registration here
+ */
 LoggerFactory::LoggerFactory() {
 	//add your loggers here
 	this->registerCreator(std::shared_ptr<Logger>(new ConsoleLogger()));
@@ -23,6 +26,7 @@ LoggerFactory::LoggerFactory() {
 }
 /**
  * Generates logger using config value
+ * @return Logger
  */
 std::shared_ptr<Logger> LoggerFactory::createProduct() {
 	std::string loggerName = Configs::getInstance().get("Logger");
@@ -36,6 +40,7 @@ std::shared_ptr<Logger> LoggerFactory::createProduct() {
 
 /**
  * Register acessible loggers
+ * @param factoryProduct - Logger to register
  */
 void LoggerFactory::registerCreator(std::shared_ptr<Logger> factoryProduct) {
 	//register logger to avaible list

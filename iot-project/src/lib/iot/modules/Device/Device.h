@@ -14,6 +14,9 @@
 
 namespace iot {
 
+/**
+ * Abstract device class, simplifies communucation between Model and Link
+ */
 class Device: public Model {
 public:
 	typedef std::map<std::string, std::string> tDeviceData;

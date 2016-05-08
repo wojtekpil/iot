@@ -22,7 +22,6 @@ std::string Exception::getMsg() {
 }
 
 Exception::~Exception() {
-	// TODO Auto-generated destructor stub
 }
 
 } /* namespace iot */

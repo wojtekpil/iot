@@ -10,16 +10,17 @@
 namespace iot {
 
 FactoryProduct::FactoryProduct() {
-	// TODO Auto-generated constructor stub
-
 }
 
+/**
+ * Get unique name of factory product
+ * @return name
+ */
 std::string FactoryProduct::getUniqueName() {
 	return this->_uniqueName;
 }
 
 FactoryProduct::~FactoryProduct() {
-	// TODO Auto-generated destructor stub
 }
 
 } /* namespace iot */

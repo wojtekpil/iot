@@ -12,7 +12,9 @@
 #include <map>
 
 namespace iot {
-
+/**
+ * Class keeping all config of application, only one instance in program
+ */
 class Configs {
 private:
 	std::map<std::string, std::string> _fields;

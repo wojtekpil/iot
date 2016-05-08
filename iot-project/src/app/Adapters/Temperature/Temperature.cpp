@@ -14,7 +14,6 @@ namespace app {
 namespace adapter {
 
 Temperature::Temperature() {
-	// TODO Auto-generated constructor stub
 
 }
 
@@ -28,7 +27,6 @@ void Temperature::update(std::string observableName) {
 }
 
 Temperature::~Temperature() {
-	// TODO Auto-generated destructor stub
 }
 
 } /* namespace adapter */

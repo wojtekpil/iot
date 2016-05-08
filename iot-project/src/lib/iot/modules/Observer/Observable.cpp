@@ -11,12 +11,12 @@
 namespace iot {
 
 Observable::Observable() {
-	// TODO Auto-generated constructor stub
-
 }
 
 /**
  * Atach new observer to observable object, thread safty aproach
+ * @param observer - obsever object to add
+ * @return
  */
 bool Observable::atach(const std::shared_ptr<Observer> observer) {
 	std::lock_guard<std::mutex> guard(this->_observableMutex);
@@ -25,6 +25,8 @@ bool Observable::atach(const std::shared_ptr<Observer> observer) {
 }
 /**
  * Remove  observer, thread safty aproach
+ * @param observer - observer object to remove
+ * @return
  */
 bool Observable::detach(const std::shared_ptr<Observer> observer) {
 	std::lock_guard<std::mutex> guard(this->_observableMutex);
@@ -32,6 +34,9 @@ bool Observable::detach(const std::shared_ptr<Observer> observer) {
 	return true;
 }
 
+/**
+ * Broadcast event to observers
+ */
 void Observable::notify() {
 	//"copy and broadcast" // lock -> copy list -> unlock
 	// http://stackoverflow.com/questions/14381588/observer-pattern-using-weak-ptr
@@ -59,7 +64,6 @@ void Observable::notify() {
 }
 
 Observable::~Observable() {
-	// TODO Auto-generated destructor stub
 }
 
 } /* namespace iot */

@@ -11,7 +11,9 @@
 #include <string>
 
 namespace iot {
-
+/**
+ * Abstract class of factory product, each class produced by factory should inherit it
+ */
 class FactoryProduct {
 protected:
 	std::string _uniqueName;

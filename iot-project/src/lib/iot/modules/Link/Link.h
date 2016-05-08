@@ -14,9 +14,12 @@
 
 namespace iot {
 
+/**
+ * Network Link abstract class
+ */
 class Link: public FactoryProduct{
 protected:
-	std::string _name="UnknownLink";
+	std::string _uniqueName="UnknownLink";
 public:
 	struct Sdevice {
 		uint32_t addr;

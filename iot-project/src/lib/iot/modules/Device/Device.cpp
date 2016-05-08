@@ -10,10 +10,12 @@
 namespace iot {
 
 Device::Device() {
-	// TODO Auto-generated constructor stub
-
 }
 
+/**
+ * Update data in Device Model
+ * @param devData
+ */
 void Device::update(tDeviceData devData) {
 	//update exitising fileds
 	for (const auto& kv : devData) {
@@ -24,7 +26,6 @@ void Device::update(tDeviceData devData) {
 }
 
 Device::~Device() {
-	// TODO Auto-generated destructor stub
 }
 
 } /* namespace iot */

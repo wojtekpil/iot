@@ -17,7 +17,9 @@ static Utils utils;
 Utils::Utils() {
 	onStartup();
 }
-
+/**
+ * Executing always when application starts
+ */
 void Utils::onStartup() {
 	//run random generator
 	srand( time( NULL ) );
@@ -25,7 +27,6 @@ void Utils::onStartup() {
 }
 
 Utils::~Utils() {
-	// TODO Auto-generated destructor stub
 }
 
 } /* namespace iot */

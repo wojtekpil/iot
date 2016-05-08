@@ -22,6 +22,9 @@ Bootstrap::Bootstrap() {
 
 }
 
+/**
+ * Configure your application here
+ */
 void Bootstrap::run_app() {
 	iot::Core core;
 
@@ -43,7 +46,6 @@ void Bootstrap::run_app() {
 
 
 Bootstrap::~Bootstrap() {
-	// TODO Auto-generated destructor stub
 }
 
 

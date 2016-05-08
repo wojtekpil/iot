@@ -12,6 +12,9 @@
 
 namespace iot {
 
+/**
+ * Observer abstract class can observe Observable classes
+ */
 class Observer {
 public:
 	Observer();

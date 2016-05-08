@@ -10,6 +10,9 @@
 
 namespace app {
 
+/**
+ * Bootstraps application for specific use
+ */
 class Bootstrap {
 public:
 	Bootstrap();

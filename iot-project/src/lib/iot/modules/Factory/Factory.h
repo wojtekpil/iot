@@ -13,6 +13,9 @@
 
 namespace iot {
 
+/**
+ * Abstract Class Factory, for now, for semantics only
+ */
 class Factory {
 public:
 	Factory();

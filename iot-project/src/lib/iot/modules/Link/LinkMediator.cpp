@@ -10,7 +10,6 @@
 namespace iot {
 
 LinkMediator::LinkMediator() {
-	// TODO Auto-generated constructor stub
 
 }
 
@@ -57,7 +56,6 @@ void LinkMediator::notify() {
 }
 
 LinkMediator::~LinkMediator() {
-	// TODO Auto-generated destructor stub
 }
 
 } /* namespace iot */

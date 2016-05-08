@@ -10,6 +10,9 @@
 
 namespace iot {
 
+/**
+ * Utils class containing some static method that are common in application
+ */
 class Utils {
 public:
 	Utils();

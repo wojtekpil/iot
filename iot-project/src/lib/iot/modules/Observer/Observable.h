@@ -14,7 +14,9 @@
 #include <mutex>
 
 namespace iot {
-
+/**
+ * Abstract class defining Observable elements. Each of this objects can be observed by Observable object
+ */
 class Observable {
 protected:
 	std::mutex _observableMutex;

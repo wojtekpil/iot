@@ -17,10 +17,12 @@ FileLogger::FileLogger() {
 }
 
 bool FileLogger::open(std::string fileName) {
+	// TODO open logging file
 	return true;
 }
 
 bool FileLogger::close() {
+	// TODO close logging file
 	return true;
 }
 

@@ -12,6 +12,9 @@
 
 namespace iot {
 
+/**
+ * Main Exception class
+ */
 class Exception {
 protected:
 	std::string _ex_msg;

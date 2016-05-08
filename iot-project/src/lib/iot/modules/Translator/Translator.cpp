@@ -10,12 +10,10 @@
 namespace iot {
 
 Translator::Translator() {
-	// TODO Auto-generated constructor stub
 
 }
 
 Translator::~Translator() {
-	// TODO Auto-generated destructor stub
 }
 
 } /* namespace iot */

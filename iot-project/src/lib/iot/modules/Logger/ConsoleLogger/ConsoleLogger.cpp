@@ -12,7 +12,6 @@
 namespace iot {
 
 ConsoleLogger::ConsoleLogger() {
-	// TODO Auto-generated constructor stub
 	this->_uniqueName = "ConsoleLogger";
 }
 
@@ -43,7 +42,6 @@ void ConsoleLogger::showTime() {
 }
 
 ConsoleLogger::~ConsoleLogger() {
-	// TODO Auto-generated destructor stub
 }
 
 } /* namespace iot */

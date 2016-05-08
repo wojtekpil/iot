@@ -15,6 +15,9 @@
 #include <map>
 namespace iot {
 
+/**
+ * Factory of configured Logger
+ */
 class LoggerFactory: public Factory {
 private:
 	std::map<std::string, std::shared_ptr<Logger> > _loggers;

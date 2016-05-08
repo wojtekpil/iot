@@ -11,7 +11,6 @@
 #include <sstream>
 namespace iot {
 SQLiteDatabase::SQLiteDatabase() {
-	// TODO Auto-generated constructor stub
 
 
 }

@@ -11,8 +11,7 @@
 namespace iot {
 
 DummyLink::DummyLink() {
-	// TODO Auto-generated constructor stub
-
+	this->_uniqueName = "DummyLink";
 }
 
 std::shared_ptr<Logger> DummyLink::log() {
@@ -44,7 +43,6 @@ bool DummyLink::read(std::shared_ptr<Spacket> packet) {
 }
 
 DummyLink::~DummyLink() {
-	// TODO Auto-generated destructor stub
 }
 
 } /* namespace iot */

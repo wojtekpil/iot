@@ -18,6 +18,10 @@ typedef int32_t (*databaseCallback)(void*, /* Data provided in the 4th argument 
 	char** /* An array of strings representing column names */
 );
 
+/**
+ * Abstract class for database communication
+ */
+
 class Database {
 public:
 	Database();

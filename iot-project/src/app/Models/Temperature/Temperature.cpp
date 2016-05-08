@@ -19,7 +19,6 @@ void Temperature::makeEvent() {
 }
 
 Temperature::~Temperature() {
-	// TODO Auto-generated destructor stub
 }
 
 } /* namespace model */
