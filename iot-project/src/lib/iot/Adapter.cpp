@@ -11,10 +11,12 @@
 namespace iot {
 
 Adapter::Adapter() {
-	// TODO Auto-generated constructor stub
 
 }
-
+/**
+ * Shorthand for LoggerFactory
+ * @return Logger
+ */
 std::shared_ptr<Logger> Adapter::log() {
 	LoggerFactory lf;
 	return lf.createProduct();
@@ -23,7 +25,6 @@ std::shared_ptr<Logger> Adapter::log() {
 
 
 Adapter::~Adapter() {
-	// TODO Auto-generated destructor stub
 }
 
 } /* namespace iot */

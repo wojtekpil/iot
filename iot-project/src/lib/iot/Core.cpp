@@ -14,14 +14,14 @@
 namespace iot {
 
 Core::Core() {
-	// TODO Auto-generated constructor stub
-
 }
 
-Core::~Core() {
-	// TODO Auto-generated destructor stub
-}
 
+
+/**
+ * Ater this point configuration off aplication is completed,
+ * framework is stating its internal functionality
+ */
 void Core::run() {
 	LoggerFactory lf;
 	std::shared_ptr<Logger> logger = lf.createProduct();
@@ -30,12 +30,17 @@ void Core::run() {
 	//closing
 	this->shutdown();
 }
-
+/**
+ * Closing application, some cleaning is needed
+ */
 void Core::shutdown() {
 	LoggerFactory lf;
 	std::shared_ptr<Logger> logger = lf.createProduct();
 	logger->debug("Core of IoT is shutting down...");
 	ModelFactory::destroyCreators();
+}
+
+Core::~Core() {
 }
 
 } /* namespace iot */

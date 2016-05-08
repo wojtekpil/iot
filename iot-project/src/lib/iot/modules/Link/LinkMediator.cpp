@@ -48,6 +48,7 @@ bool LinkMediator::unregisterDevice(Link::Sdevice config,
 		std::shared_ptr<Device> dev) {
 	std::lock_guard<std::mutex> guard(this->_linkMutex);
 	// FIXME unregister Device
+	return true;
 }
 
 void LinkMediator::notify() {

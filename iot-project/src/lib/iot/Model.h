@@ -13,13 +13,12 @@
 #include "modules/Logger/Logger.h"
 
 namespace iot {
-
+/**
+ * MVA Model class should be observed by Adapter class.
+ * All models in app should inherit from this abstract class
+ */
 class Model: public Observable {
 protected:
-	/**
-	 * Shorthand for LoggerFactory
-	 * @return
-	 */
 	std::shared_ptr<Logger> log();
 public:
 	Model();

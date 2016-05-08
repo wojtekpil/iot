@@ -11,15 +11,24 @@
 namespace iot {
 
 ModelFactory::ModelFactory() {
-	// TODO Auto-generated constructor stub
 
 }
-
+/**
+ * Register Model (by ModelCreator object) in Factory
+ * @param name - unique name of the Model
+ * @param modelCreator - constructor of specific Model
+ * @return
+ */
 bool ModelFactory::registerModel(std::string name, ModelCreator* modelCreator) {
 	ModelFactory::_modelCreators[name] = modelCreator;
 	return true;
 }
-
+/**
+* Creates model using name and config, if model with given name and config exists, returns its instance
+* @param name - name of the model to produces
+* @param config - config string of model
+* @return
+*/
 std::shared_ptr<Model> ModelFactory::produce(std::string name,
 		std::string config) {
 	// identification string to return exisiting Model if already created
@@ -42,7 +51,9 @@ std::shared_ptr<Model> ModelFactory::produce(std::string name,
 		throw Exception("Model Creator name not found: " + name);
 	}
 }
-
+/**
+ * Free memory of ModelCreators
+ */
 void ModelFactory::destroyCreators() {
 	std::map<std::string, ModelCreator*>::iterator itr = ModelFactory::_modelCreators.begin();
 	while (itr != ModelFactory::_modelCreators.end()) {
@@ -52,7 +63,6 @@ void ModelFactory::destroyCreators() {
 }
 
 ModelFactory::~ModelFactory() {
-	// TODO Auto-generated destructor stub
 }
 //initialze static members
 std::map<std::string, std::shared_ptr<Model>> ModelFactory::_models = []

@@ -10,6 +10,9 @@
 
 namespace iot {
 
+/**
+ * Core of IoT framework. Run it after bootstraping application
+ */
 class Core {
 public:
 	Core();

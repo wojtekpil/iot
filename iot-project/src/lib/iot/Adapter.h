@@ -17,16 +17,20 @@
 
 
 namespace iot {
-
+/**
+ * MVA Adapter class can observe Observable classes (Models and Views).
+ * All Adapters in app should inherit from this abstract class
+ */
 class Adapter: public Observer {
 protected:
-	/**
-	 * Shorthand for LoggerFactory
-	 */
 	std::shared_ptr<Logger> log();
 public:
 	Adapter();
 	virtual void init(std::shared_ptr<Adapter> adapter)=0;
+	/**
+	 * Some Obsevable object changed
+	 * @param observableName - unique name of observable object
+	 */
 	virtual void update(std::string observableName)=0;
 	virtual ~Adapter();
 };

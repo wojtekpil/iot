@@ -11,14 +11,14 @@
 namespace iot {
 
 Model::Model() {
-	// TODO Auto-generated constructor stub
-
 }
 
 Model::~Model() {
-	// TODO Auto-generated destructor stub
 }
-
+/**
+ * Shorthand for LoggerFactory
+ * @return Logger ptr
+ */
 std::shared_ptr<Logger> Model::log() {
 	LoggerFactory lf;
 	return lf.createProduct();

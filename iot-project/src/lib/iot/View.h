@@ -11,7 +11,10 @@
 #include "modules/Observer/Observable.h"
 
 namespace iot {
-
+/**
+ * MVA View class should be observed by Adapter class.
+ * All views in app should inherit from this abstract class
+ */
 class View: public Observable {
 public:
 	View();

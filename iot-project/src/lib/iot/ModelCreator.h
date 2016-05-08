@@ -12,6 +12,9 @@
 
 namespace iot {
 
+/**
+ * Abstract class for ModelCreator used in ModelFactory
+ */
 class ModelCreator {
 public:
 	ModelCreator() {}
