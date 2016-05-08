@@ -10,7 +10,9 @@
 #include <memory>
 #include <map>
 #include <vector>
+#include <thread>
 #include <mutex>
+#include <atomic>
 
 #include "Link.h"
 #include "../Device/Device.h"
@@ -25,20 +27,24 @@ protected:
 	struct SlinkDevice {
 		std::shared_ptr<Device> dev;
 		std::shared_ptr<Translator> trans;
-		std::shared_ptr<Link> link;
+		std::string linkName;
 		Link::Sdevice conf;
 	};
-	std::map<std::string,std::shared_ptr<Link>> _links;
+	std::vector<std::string> _links;
 	std::vector<SlinkDevice> _devices;
 	std::mutex _linkMutex;
+	std::vector<std::thread> _linkThreads;
+	std::atomic<bool> running;
 
 public:
 	LinkMediator();
-	bool registerLink(std::shared_ptr<Link> link);
+	bool registerLink(std::string linkName);
 	bool registerDevice(Link::Sdevice config, std::shared_ptr<Device> dev, std::shared_ptr<Translator> trans);
-	bool unregisterLink(std::shared_ptr<Link> link);
+	bool unregisterLink(std::string linkName);
 	bool unregisterDevice(Link::Sdevice config, std::shared_ptr<Device> dev);
 	void notify();
+	static void linkReader(LinkMediator* mediator, std::string linkName);
+	void shutdown();
 	virtual ~LinkMediator();
 };
 

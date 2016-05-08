@@ -39,7 +39,6 @@ void Bootstrap::run_app() {
 	//some testing
 	auto tempM = std::dynamic_pointer_cast<app::model::Temperature>(iot::ModelFactory::produce("Temperature",""));
 	tempM->makeEvent();
-
 	core.run();
 
 }

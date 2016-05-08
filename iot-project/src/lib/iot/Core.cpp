@@ -10,6 +10,7 @@
 
 #include "modules/Logger/LoggerFactory.h"
 #include "ModelFactory.h"
+#include "modules/Link/LinkMediator.h"
 
 namespace iot {
 
@@ -26,9 +27,11 @@ void Core::run() {
 	LoggerFactory lf;
 	std::shared_ptr<Logger> logger = lf.createProduct();
 	logger->debug("Core of IoT is starting...");
-
+	LinkMediator lm;
+	lm.registerLink("DummyLink");
 	//closing
 	this->shutdown();
+	lm.shutdown();
 }
 /**
  * Closing application, some cleaning is needed

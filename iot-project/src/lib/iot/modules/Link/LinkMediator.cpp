@@ -6,21 +6,30 @@
  */
 
 #include "LinkMediator.h"
+#include "../Logger/LoggerFactory.h"
+#include <algorithm>
+#include <chrono>
+#include <iostream>
 
 namespace iot {
 
 LinkMediator::LinkMediator() {
-
+	running = true;
 }
 /**
  * Register Link type in LinkMediator for communication between Device Model and Link
  * @param link
  * @return
  */
-bool LinkMediator::registerLink(std::shared_ptr<Link> link) {
+bool LinkMediator::registerLink(std::string linkName) {
 	std::lock_guard<std::mutex> guard(this->_linkMutex);
-	this->_links[link->getName()] = link;
-	return true;
+	//check if linkName is already in list
+	if ( std::find(this->_links.begin(), this->_links.end(), linkName) == this->_links.end() ){
+		this->_links.push_back(linkName);
+		this->_linkThreads.push_back(std::thread(LinkMediator::linkReader,this, linkName));
+		return true;
+	}
+	return false;
 }
 /**
  * Register connection between Device Model, Link using given Translator (from link to model)
@@ -37,7 +46,7 @@ bool LinkMediator::registerDevice(Link::Sdevice config,
 	ld.conf = config;
 	ld.dev = dev;
 	ld.trans = trans;
-	ld.link = this->_links.begin()->second; //Temporary!!!
+	ld.linkName = this->_links.at(0); //Temporary!!!
 	this->_devices.push_back(ld);
 	return true;
 }
@@ -46,15 +55,10 @@ bool LinkMediator::registerDevice(Link::Sdevice config,
  * @param link
  * @return
  */
-bool LinkMediator::unregisterLink(std::shared_ptr<Link> link) {
+bool LinkMediator::unregisterLink(std::string linkName) {
 	std::lock_guard<std::mutex> guard(this->_linkMutex);
-	std::map<std::string, std::shared_ptr<Link>>::iterator iter =
-			this->_links.find(link->getName());
-	if (iter != this->_links.end()){
-		this->_links.erase(iter);
-		return true;
-	}
-	return false;
+	this->_links.erase(std::remove(this->_links.begin(), this->_links.end(), linkName), this->_links.end());
+	return true;
 }
 /**
  * Removes connection of Device Model and Link
@@ -74,7 +78,39 @@ void LinkMediator::notify() {
 	// FIXME connect Link with Device in LinkMediator
 }
 
+/**
+ * Reading Link threads starts here
+ * @param mediator pointer to mediator object
+ * @param linkName link to read
+ */
+void LinkMediator::linkReader(LinkMediator* mediator, std::string linkName) {
+	LoggerFactory lf;
+	lf.createProduct()->debug("Thread of Link: "+ linkName+" started");
+	while(mediator->running.load()) {
+		// TODO Creation and reading from Link objects
+		std::this_thread::sleep_for(std::chrono::seconds(1));
+		lf.createProduct()->debug("Thread of Link: "+ linkName+" executing");
+	}
+	lf.createProduct()->debug("Thread of Link: "+ linkName+" ending");
+}
+
+
+void LinkMediator::shutdown() {
+
+
+	// FIXME remove test sleep
+	std::this_thread::sleep_for(std::chrono::seconds(3));
+	running = false;
+	LoggerFactory lf;
+	lf.createProduct()->debug("Joining threads of Link");
+	//join all threads
+	for(auto &t : this->_linkThreads){
+	        t.join();
+	}
+}
+
 LinkMediator::~LinkMediator() {
+	//this->shutdown();
 }
 
 } /* namespace iot */

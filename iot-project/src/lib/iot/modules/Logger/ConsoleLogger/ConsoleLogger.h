@@ -9,12 +9,14 @@
 #define LIB_IOT_MODULES_LOGGER_CONSOLELOGGER_CONSOLELOGGER_H_
 
 #include "../Logger.h"
+#include <mutex>
 
 namespace iot {
 
 class ConsoleLogger: public Logger {
 private:
 	void showTime();
+	std::mutex _loggerMutex;
 public:
 	ConsoleLogger();
 	virtual void debug(std::string msg);
