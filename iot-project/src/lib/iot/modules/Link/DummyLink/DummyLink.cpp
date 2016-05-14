@@ -19,7 +19,7 @@ std::shared_ptr<Logger> DummyLink::log() {
 	return lf.createProduct();
 }
 
-bool DummyLink::connect(std::string conf) {
+bool DummyLink::connect(std::string conf, LinkMediator* mediator) {
 	this->log()->debug("DummyLink connecting...");
 	return true;
 }
@@ -41,8 +41,13 @@ bool DummyLink::read(std::shared_ptr<Spacket> packet) {
 	time_here++;
 	return true;
 }
+bool DummyLink::isRunning() {
+	return true;
+}
 
 DummyLink::~DummyLink() {
 }
 
 } /* namespace iot */
+
+

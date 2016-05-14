@@ -16,10 +16,11 @@ namespace iot {
  */
 class FactoryProduct {
 protected:
-	std::string _uniqueName;
+	std::string _uniqueName="Unnamed";
 public:
 	FactoryProduct();
 	std::string getUniqueName();
+	void setUniqueName(std::string);
 	virtual ~FactoryProduct();
 };
 

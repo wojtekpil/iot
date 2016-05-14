@@ -17,12 +17,15 @@ Device::Device() {
  * @param devData
  */
 void Device::update(tDeviceData devData) {
+	auto updated = std::make_shared<std::vector<std::string>>();
 	//update exitising fileds
 	for (const auto& kv : devData) {
 		this->_fields[kv.first] = kv.second;
+		updated->push_back(kv.first);
 	}
 	//run after update for tuning
-	afterUpdate();
+	if(updated->size()>0)
+		afterUpdate(updated);
 }
 
 Device::~Device() {

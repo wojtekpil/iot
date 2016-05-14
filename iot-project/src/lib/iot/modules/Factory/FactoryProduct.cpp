@@ -20,9 +20,13 @@ std::string FactoryProduct::getUniqueName() {
 	return this->_uniqueName;
 }
 
+void FactoryProduct::setUniqueName(std::string name) {
+	this->_uniqueName = name;
+}
+
+
 FactoryProduct::~FactoryProduct() {
 }
 
 } /* namespace iot */
-
 

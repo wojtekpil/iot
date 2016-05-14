@@ -16,7 +16,7 @@ int main() {
 	app::Bootstrap ap;
 	try {
 		ap.run_app();
-	} catch (iot::Exception& ex) {
+	} catch (iot::Exception ex) {
 		cout<< "Main Exception Uncaugh in App: "<<ex.getMsg()<<endl;
 	}
 

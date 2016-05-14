@@ -18,8 +18,17 @@ void Temperature::makeEvent() {
 	this->notify();
 }
 
+void Temperature::afterUpdate(std::shared_ptr<std::vector<std::string>> updated) {
+	this->log()->debug("Some Updates were here");
+	for(const auto& field: (*updated)) {
+		this->log()->debug("app::model::Temperature: "+field+"="+this->_fields[field]);
+	}
+}
+
 Temperature::~Temperature() {
 }
 
 } /* namespace model */
 } /* namespace app */
+
+

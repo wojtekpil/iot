@@ -19,6 +19,10 @@
 #include "../Translator/Translator.h"
 
 namespace iot {
+
+class Link;
+struct Sdevice;
+struct Spacket;
 /**
  * Manages connection between Links and Device Models
  */
@@ -28,7 +32,7 @@ protected:
 		std::shared_ptr<Device> dev;
 		std::shared_ptr<Translator> trans;
 		std::string linkName;
-		Link::Sdevice conf;
+		Sdevice *conf;
 	};
 	std::vector<std::string> _links;
 	std::vector<SlinkDevice> _devices;
@@ -39,10 +43,10 @@ protected:
 public:
 	LinkMediator();
 	bool registerLink(std::string linkName);
-	bool registerDevice(Link::Sdevice config, std::shared_ptr<Device> dev, std::shared_ptr<Translator> trans);
+	bool registerDevice(Sdevice config, std::shared_ptr<Device> dev, std::shared_ptr<Translator> trans);
 	bool unregisterLink(std::string linkName);
-	bool unregisterDevice(Link::Sdevice config, std::shared_ptr<Device> dev);
-	void notify();
+	bool unregisterDevice(Sdevice config, std::shared_ptr<Device> dev);
+	void notify(std::shared_ptr<Spacket> packet);
 	static void linkReader(LinkMediator* mediator, std::string linkName);
 	void shutdown();
 	virtual ~LinkMediator();

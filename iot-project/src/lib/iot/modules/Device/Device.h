@@ -9,6 +9,8 @@
 #define LIB_IOT_MODULES_DEVICE_DEVICE_H_
 #include <string>
 #include <map>
+#include <vector>
+#include <memory>
 
 #include "../../Model.h"
 
@@ -22,7 +24,7 @@ public:
 	typedef std::map<std::string, std::string> tDeviceData;
 	Device();
 	virtual void update(tDeviceData devData);
-	virtual void afterUpdate()=0;
+	virtual void afterUpdate(std::shared_ptr<std::vector<std::string>>)=0;
 	virtual ~Device();
 protected:
 	tDeviceData _fields;

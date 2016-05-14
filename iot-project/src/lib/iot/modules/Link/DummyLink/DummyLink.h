@@ -19,8 +19,9 @@ private:
 	std::shared_ptr<Logger> log();
 public:
 	DummyLink();
-	virtual bool connect(std::string conf);
+	virtual bool connect(std::string conf, LinkMediator* mediator);
 	virtual bool disconnect();
+	virtual bool isRunning();
 	virtual bool send(std::shared_ptr<Spacket> packet);
 	virtual bool read(std::shared_ptr<Spacket> packet);
 	virtual ~DummyLink();
