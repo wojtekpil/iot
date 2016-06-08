@@ -10,7 +10,7 @@
 
 #include <string>
 #include <map>
-
+#include <mutex>
 namespace iot {
 /**
  * Class keeping all config of application, only one instance in program
@@ -18,10 +18,12 @@ namespace iot {
 class Configs {
 private:
 	std::map<std::string, std::string> _fields;
+	std::mutex _configMutex;
 	Configs();
 	Configs(const Configs &);
 	Configs& operator=(const Configs&);
 	~Configs();
+
 public:
 	bool set(std::string field, std::string value);
 	std::string get(std::string field);

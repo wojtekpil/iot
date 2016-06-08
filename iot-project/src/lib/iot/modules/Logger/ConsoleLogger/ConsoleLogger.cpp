@@ -16,27 +16,30 @@ ConsoleLogger::ConsoleLogger() {
 }
 
 void ConsoleLogger::debug(std::string msg) {
-	std::lock_guard<std::mutex> guard(this->_loggerMutex);
+	this->_loggerMutex.lock();
 	showTime();
 	std::cout << "DEBUG: " << msg << std::endl;
+	this->_loggerMutex.unlock();
 }
 
 void ConsoleLogger::warn(std::string msg) {
-	std::lock_guard<std::mutex> guard(this->_loggerMutex);
+	this->_loggerMutex.lock();
 	showTime();
 	std::cout << "WARN: " << msg << std::endl;
+	this->_loggerMutex.unlock();
 }
 
 void ConsoleLogger::error(std::string msg) {
-	std::lock_guard<std::mutex> guard(this->_loggerMutex);
+	this->_loggerMutex.lock();
 	showTime();
 	std::cout << "ERROR: " << msg << std::endl;
+	this->_loggerMutex.unlock();
 }
 
 void ConsoleLogger::showTime() {
 	time_t tim;
 	struct tm * data;
-	char act_time[80];
+	char act_time[81];
 
 	time(&tim);
 	data = localtime(&tim);

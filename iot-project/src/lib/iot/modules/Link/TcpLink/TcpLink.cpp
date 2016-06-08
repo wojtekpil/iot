@@ -49,6 +49,7 @@ bool TcpLink::disconnect() {
 }
 
 bool TcpLink::send(std::shared_ptr<Spacket> packet) {
+	// TODO implement sending
 	return true;
 }
 

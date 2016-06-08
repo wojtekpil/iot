@@ -18,7 +18,9 @@ Configs::Configs() {
  * @return
  */
 bool Configs::set(std::string field, std::string value) {
+	this->_configMutex.lock();
 	this->_fields[field] = value;
+	this->_configMutex.unlock();
 	return true;
 }
 
@@ -28,6 +30,7 @@ bool Configs::set(std::string field, std::string value) {
  * @return value of field
  */
 std::string Configs::get(std::string field) {
+	std::lock_guard<std::mutex> guard(this->_configMutex);
 	return this->_fields[field];
 }
 

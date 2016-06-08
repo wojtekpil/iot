@@ -26,7 +26,7 @@ public:
 	Observable();
 	virtual bool atach(const std::shared_ptr<Observer> observer);
 	virtual bool detach(const std::shared_ptr<Observer> observer);
-	virtual void notify();
+	virtual void notify(std::string extra);
 	virtual ~Observable();
 };
 

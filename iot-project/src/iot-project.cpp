@@ -18,6 +18,8 @@ int main() {
 		ap.run_app();
 	} catch (iot::Exception ex) {
 		cout<< "Main Exception Uncaugh in App: "<<ex.getMsg()<<endl;
+	} catch (...) {
+		cout<< "Main Exception Unknown Uncaugh in App "<<endl;
 	}
 
 	return 0;

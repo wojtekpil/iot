@@ -16,7 +16,6 @@ using std::string;
 using std::vector;
 
 StandardTranslator::StandardTranslator() {
-	// TODO Auto-generated constructor stub
 
 }
 
@@ -56,7 +55,6 @@ std::string StandardTranslator::toDevice(Device::tDeviceData fromSys) {
 }
 
 StandardTranslator::~StandardTranslator() {
-	// TODO Auto-generated destructor stub
 }
 
 } /* namespace iot */

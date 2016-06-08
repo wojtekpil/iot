@@ -12,7 +12,6 @@
 #include <vector>
 #include <thread>
 #include <mutex>
-#include <atomic>
 
 #include "Link.h"
 #include "../Device/Device.h"
@@ -37,8 +36,7 @@ protected:
 	std::vector<std::string> _links;
 	std::vector<SlinkDevice> _devices;
 	std::mutex _linkMutex;
-	std::vector<std::thread> _linkThreads;
-	std::atomic<bool> running;
+	std::map<std::string, std::shared_ptr<Link> > _linkInstances;
 
 public:
 	LinkMediator();
@@ -47,7 +45,9 @@ public:
 	bool unregisterLink(std::string linkName);
 	bool unregisterDevice(Sdevice config, std::shared_ptr<Device> dev);
 	void notify(std::shared_ptr<Spacket> packet);
-	static void linkReader(LinkMediator* mediator, std::string linkName);
+	void send(std::shared_ptr<Spacket> packet);
+	void linkReader(std::string linkName);
+	void start();
 	void shutdown();
 	virtual ~LinkMediator();
 };

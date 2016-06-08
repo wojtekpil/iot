@@ -37,7 +37,7 @@ bool Observable::detach(const std::shared_ptr<Observer> observer) {
 /**
  * Broadcast event to observers
  */
-void Observable::notify() {
+void Observable::notify(std::string extra) {
 	//"copy and broadcast" // lock -> copy list -> unlock
 	// http://stackoverflow.com/questions/14381588/observer-pattern-using-weak-ptr
 
@@ -58,7 +58,7 @@ void Observable::notify() {
 	}
 
 	for( auto& target:targets ) {
-		target->update(this->_name);
+		target->update(this->_name, extra);
 	}
 
 }

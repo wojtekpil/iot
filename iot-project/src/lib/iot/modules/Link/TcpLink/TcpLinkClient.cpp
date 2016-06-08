@@ -72,11 +72,11 @@ void TcpLinkClient::run(std::shared_ptr<TcpLinkClient> client) {
 		auto pck = std::make_shared<Spacket>();
 
 		pck->dev.addr = addr;
+		// TODO write real network_conf
 		pck->dev.network_conf="TcpLink"; // stub
 		pck->message = c;
 		client->getServer()->read(pck);
 		//log->debug("TcpLink: new msg: "+c);
-		// TODO write command interpretation here
 	} while (client->is_running());
 }
 

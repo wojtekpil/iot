@@ -16,7 +16,6 @@
 namespace iot {
 
 LinkMediator::LinkMediator() {
-	running = true;
 }
 /**
  * Register Link type in LinkMediator for communication between Device Model and Link
@@ -28,7 +27,7 @@ bool LinkMediator::registerLink(std::string linkName) {
 	//check if linkName is already in list
 	if ( std::find(this->_links.begin(), this->_links.end(), linkName) == this->_links.end() ){
 		this->_links.push_back(linkName);
-		this->_linkThreads.push_back(std::thread(LinkMediator::linkReader,this, linkName));
+		//this->_linkThreads.push_back(std::thread(LinkMediator::linkReader,this, linkName));
 		return true;
 	}
 	return false;
@@ -77,7 +76,6 @@ bool LinkMediator::unregisterDevice(Sdevice config,
 
 void LinkMediator::notify(std::shared_ptr<Spacket> packet) {
 	std::lock_guard<std::mutex> guard(this->_linkMutex);
-	// FIXME connect Link with Device in LinkMediator
 	uint32_t found_devices = 0;
 	for (auto &dev : this->_devices) // access by reference to avoid copying
 	{
@@ -98,25 +96,21 @@ void LinkMediator::notify(std::shared_ptr<Spacket> packet) {
  * @param mediator pointer to mediator object
  * @param linkName link to read
  */
-void LinkMediator::linkReader(LinkMediator* mediator, std::string linkName) {
-	LoggerFactory lf;
-	lf.createProduct()->debug("Thread of Link: "+ linkName+" started");
-	auto linkf = new LinkFactory();
-	auto link = linkf->createProduct(linkName);
+void LinkMediator::linkReader(std::string linkName) {
+
 	try {
-		link->connect("1234", mediator);
+		LoggerFactory lf;
+		lf.createProduct()->debug("Thread of Link: "+ linkName+" started");
+		auto linkf = new LinkFactory();
+		auto link = linkf->createProduct(linkName);
+		this->_linkInstances[linkName] = link;
+		link->connect("1234", this);
 
 
-		while(mediator->running.load()) {
-			// TODO Creation and reading from Link objects
-			//std::this_thread::sleep_for(std::chrono::seconds(1));
-			//lf.createProduct()->debug("Thread of Link: "+ linkName+" executing");
-		}
-		link->disconnect();
 	} catch (Exception& e) {
+		LoggerFactory lf;
 		lf.createProduct()->error(e.getMsg());
 	}
-	lf.createProduct()->debug("Thread of Link: "+ linkName+" ending");
 }
 
 
@@ -127,12 +121,33 @@ void LinkMediator::shutdown() {
 	//std::this_thread::sleep_for(std::chrono::seconds(20));
 	int test;
 	std::cin>>test;
-	this->running = false;
 	LoggerFactory lf;
-	lf.createProduct()->debug("Joining threads of Link");
-	//join all threads
-	for(auto &t : this->_linkThreads){
-	        t.join();
+	lf.createProduct()->debug("Closing  Links");
+	for(const auto& link: this->_linkInstances) {
+		link.second->disconnect();
+	}
+}
+
+/**
+ * Send packet to device
+ * @param packet
+ */
+void LinkMediator::send(std::shared_ptr<Spacket> packet) {
+	std::lock_guard<std::mutex> guard(this->_linkMutex);
+	//FIXME real network conf
+	auto link = this->_linkInstances.find(packet->dev.network_conf);
+	if ( link != this->_linkInstances.end() ) {
+		link->second->send(packet);
+	} else {
+		LoggerFactory lf;
+		lf.createProduct()->warn("LinkMediator: Link: " + packet->dev.network_conf+ " not registered");
+	}
+
+}
+
+void LinkMediator::start() {
+	for(const auto& link: this->_links) {
+		this->linkReader(link);
 	}
 }
 

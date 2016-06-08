@@ -30,11 +30,15 @@ Bootstrap::Bootstrap() {
  */
 void Bootstrap::run_app() {
 	iot::Core core;
-	iot::LinkMediator lm;
-	lm.registerLink("TcpLink");
-
 	//bootstrap app here
 	iot::Configs::getInstance().set("Logger", "ConsoleLogger");
+
+
+	auto lm = std::make_shared<iot::LinkMediator>();
+	lm->registerLink("TcpLink");
+	std::cout<<"Bootstraping after Register Link"<<std::endl;
+
+
 	//model creators
 	iot::ModelFactory::registerModel("Temperature",  new model::TemperatureCreator());
 
@@ -49,11 +53,15 @@ void Bootstrap::run_app() {
 	auto tempM = std::dynamic_pointer_cast<app::model::Temperature>(iot::ModelFactory::produce("Temperature",""));
 	iot::Sdevice dev_conf;
 	dev_conf.addr = 1234;
-	dev_conf.network_conf="dfasfe";
-	lm.registerDevice(dev_conf, tempM,sTrans);
+	dev_conf.network_conf="TcpLink";
+	lm->registerDevice(dev_conf, tempM,sTrans);
+	std::cout<<"Bootstraping after Register Device"<<std::endl;
 	//tempM->makeEvent();
 	core.run();
-	lm.shutdown();
+	std::cout<<"Bootstraping after Core Run"<<std::endl;
+	lm->start();
+	lm->shutdown();
+	core.shutdown();
 }
 
 

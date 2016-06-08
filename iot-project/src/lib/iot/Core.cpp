@@ -24,11 +24,9 @@ Core::Core() {
  */
 void Core::run() {
 	LoggerFactory lf;
-	std::shared_ptr<Logger> logger = lf.createProduct();
+	auto logger = lf.createProduct();
 	logger->debug("Core of IoT is starting...");
 
-	//closing
-	this->shutdown();
 }
 /**
  * Closing application, some cleaning is needed

@@ -18,7 +18,7 @@ namespace iot {
 class Observer {
 public:
 	Observer();
-	virtual void update(std::string observableName)=0;
+	virtual void update(std::string observableName, std::string extra)=0;
 	virtual ~Observer();
 };
 

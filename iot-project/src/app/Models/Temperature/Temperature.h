@@ -14,10 +14,13 @@ namespace app {
 namespace model {
 
 class Temperature : public iot::Device{
+private:
+	void temperatureHandler(std::string actTemp);
 public:
 	Temperature();
 	void makeEvent();
 	virtual void afterUpdate(std::shared_ptr<std::vector<std::string>>);
+	std::string getTemperature();
 	virtual ~Temperature();
 };
 

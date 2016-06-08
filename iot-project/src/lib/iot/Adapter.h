@@ -31,7 +31,7 @@ public:
 	 * Some Obsevable object changed
 	 * @param observableName - unique name of observable object
 	 */
-	virtual void update(std::string observableName)=0;
+	virtual void update(std::string observableName, std::string extra)=0;
 	virtual ~Adapter();
 };
 
