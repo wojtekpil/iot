@@ -1,0 +1,12 @@
+c:\users\wojtek\documents\visual studio 2015\Projects\CzujnikTemperatury\CzujnikTemperatury\bin\Debug\CzujnikTemperatury.exe.config
+c:\users\wojtek\documents\visual studio 2015\Projects\CzujnikTemperatury\CzujnikTemperatury\bin\Debug\CzujnikTemperatury.exe
+c:\users\wojtek\documents\visual studio 2015\Projects\CzujnikTemperatury\CzujnikTemperatury\bin\Debug\CzujnikTemperatury.pdb
+c:\users\wojtek\documents\visual studio 2015\Projects\CzujnikTemperatury\CzujnikTemperatury\obj\Debug\CzujnikTemperatury.csprojResolveAssemblyReference.cache
+c:\users\wojtek\documents\visual studio 2015\Projects\CzujnikTemperatury\CzujnikTemperatury\obj\Debug\CzujnikTemperatury.Form1.resources
+c:\users\wojtek\documents\visual studio 2015\Projects\CzujnikTemperatury\CzujnikTemperatury\obj\Debug\CzujnikTemperatury.Properties.Resources.resources
+c:\users\wojtek\documents\visual studio 2015\Projects\CzujnikTemperatury\CzujnikTemperatury\obj\Debug\CzujnikTemperatury.csproj.GenerateResource.Cache
+c:\users\wojtek\documents\visual studio 2015\Projects\CzujnikTemperatury\CzujnikTemperatury\obj\Debug\CzujnikTemperatury.exe
+c:\users\wojtek\documents\visual studio 2015\Projects\CzujnikTemperatury\CzujnikTemperatury\obj\Debug\CzujnikTemperatury.pdb
+F:\dane\git\iot\CzujnikTemperatury\CzujnikTemperatury\bin\Debug\CzujnikTemperatury.exe.config
+F:\dane\git\iot\CzujnikTemperatury\CzujnikTemperatury\obj\Debug\CzujnikTemperatury.exe
+F:\dane\git\iot\CzujnikTemperatury\CzujnikTemperatury\obj\Debug\CzujnikTemperatury.pdb
